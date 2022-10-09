@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Films from "../components/Films";
-import Title from "../components/Title";
+import Films from "../components/Films/Films";
+import Title from "../components/Title/Title";
 export default function CatalogPage() {
   return (
     <Container>

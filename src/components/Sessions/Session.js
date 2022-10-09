@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Times from "./Times";
+import Times from "../Times/Times";
 
 export default function Session({ day }) {
   return (
