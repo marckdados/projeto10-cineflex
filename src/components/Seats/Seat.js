@@ -7,6 +7,8 @@ export default function Seat({
   isAvailable,
   listSeats,
   setListSeats,
+  idSeats,
+  setIdSeats,
 }) {
   const GRAY = "#c3cfd9";
   const BORDER_GRAY = "#808f9d";
@@ -24,18 +26,26 @@ export default function Seat({
         case true:
           setColor(GREEN);
           setBorder(BORDER_GREEN);
-          setListSeats((listSeats) => [...listSeats, id]);
+          setListSeats((listSeats) => [...listSeats, name]);
+          setIdSeats((idSeats) => [...idSeats, id]);
           break;
         case false:
           setColor(GRAY);
           setBorder(BORDER_GRAY);
-          const newArray = listSeats.filter((removeId) => {
+          const newArray = listSeats.filter((removeName) => {
+            if (removeName !== name) {
+              return name;
+            }
+            return 0;
+          });
+          setListSeats(newArray);
+          const newIds = idSeats.filter((removeId) => {
             if (removeId !== id) {
               return id;
             }
             return 0;
           });
-          setListSeats(newArray);
+          setIdSeats(newIds);
           break;
         default:
           break;

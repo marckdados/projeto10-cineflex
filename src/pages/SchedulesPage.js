@@ -24,7 +24,6 @@ export default function SchedulesPage({ sessionsFilm, setSessionsFilm }) {
   if (sessionsFilm !== null) {
     return (
       <ContainerTime>
-        {console.log(sessionsFilm)}
         <Title value="Selecione o horário" />
         <Sessions filmId={filmId} sessionsFilm={sessionsFilm} />
         <Footer

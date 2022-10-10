@@ -1,10 +1,13 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Seat from "./Seat";
 
-export default function Seats({ seats }) {
-  const [listSeats, setListSeats] = useState([]);
-  console.log(listSeats);
+export default function Seats({
+  idSeats,
+  setIdSeats,
+  seats,
+  listSeats,
+  setListSeats,
+}) {
   return (
     <ContainerSeats>
       {seats.map((seat, index) => {
@@ -16,6 +19,8 @@ export default function Seats({ seats }) {
             key={index}
             listSeats={listSeats}
             setListSeats={setListSeats}
+            idSeats={idSeats}
+            setIdSeats={setIdSeats}
           />
         );
       })}

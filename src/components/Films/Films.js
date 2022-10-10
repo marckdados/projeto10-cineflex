@@ -6,7 +6,7 @@ import Film from "./Film";
 
 export default function Films() {
   const [films, setFilms] = useState([]);
-  const URL = "https://mock-api.driven.com.br/api/v8/cineflex/";
+  const URL = "https://mock-api.driven.com.br/api/v5/cineflex/";
   useEffect(() => {
     const promise = axios.get(`${URL}/movies`);
 

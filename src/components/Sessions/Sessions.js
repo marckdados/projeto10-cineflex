@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Session from "./Session";
 
 export default function Sessions({ sessionsFilm }) {
-  console.log(sessionsFilm.days);
   return (
     <ContainerSessions>
       {sessionsFilm.days.map((day, index) => {

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer/Footer";
 import Seats from "../components/Seats/Seats";
@@ -8,11 +8,20 @@ import axios from "axios";
 import ButtonsDemo from "../components/ButtonsDemo/ButtonsDemo";
 import Form from "../components/Form/Form";
 
-export default function SeatsPage() {
+export default function SeatsPage({
+  session,
+  setSession,
+  cpf,
+  setCpf,
+  name,
+  setName,
+  listSeats,
+  setListSeats,
+  idSeats,
+  setIdSeats,
+}) {
   const { sessaoId } = useParams();
-  const [session, setSession] = useState(null);
-  const [name, setName] = useState("");
-  const [cpf, setCpf] = useState("");
+
   useEffect(() => {
     const promise = axios.get(
       `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`
@@ -21,7 +30,7 @@ export default function SeatsPage() {
     promise.then((response) => {
       setSession(response.data);
     });
-  }, [sessaoId]);
+  }, [sessaoId, name, setCpf, setName, cpf]);
 
   if (session === null) {
     return <div>Carregando...</div>;
@@ -30,9 +39,24 @@ export default function SeatsPage() {
     return (
       <ContainerSeatsPage>
         <Title value="Selecione o(s) assento(s)" />
-        <Seats seats={session.seats} />
+        <Seats
+          seats={session.seats}
+          listSeats={listSeats}
+          setListSeats={setListSeats}
+          idSeats={idSeats}
+          setIdSeats={setIdSeats}
+        />
         <ButtonsDemo />
-        <Form name={name} setName={setName} cpf={cpf} setCpf={setCpf} />
+        <Form
+          name={name}
+          setName={setName}
+          cpf={cpf}
+          setCpf={setCpf}
+          listSeats={listSeats}
+          setListSeats={setListSeats}
+          idSeats={idSeats}
+          setIdSeats={setIdSeats}
+        />
         <Footer
           imagePoster={session.movie.posterURL}
           title={session.movie.title}
