@@ -1,7 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Seat from "./Seat";
 
 export default function Seats({ seats }) {
+  const [listSeats, setListSeats] = useState([]);
+  console.log(listSeats);
   return (
     <ContainerSeats>
       {seats.map((seat, index) => {
@@ -11,6 +14,8 @@ export default function Seats({ seats }) {
             id={seat.id}
             isAvailable={seat.isAvailable}
             key={index}
+            listSeats={listSeats}
+            setListSeats={setListSeats}
           />
         );
       })}

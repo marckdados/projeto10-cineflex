@@ -17,7 +17,7 @@ export default function SchedulesPage({ sessionsFilm, setSessionsFilm }) {
       const dataSession = response.data;
       setSessionsFilm(dataSession);
     });
-  }, [filmId]);
+  }, [filmId, setSessionsFilm]);
 
   if (sessionsFilm === null) return <div>Carregando meu sofrimento</div>;
 

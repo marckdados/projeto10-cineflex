@@ -5,10 +5,14 @@ import Footer from "../components/Footer/Footer";
 import Seats from "../components/Seats/Seats";
 import Title from "../components/Title/Title";
 import axios from "axios";
+import ButtonsDemo from "../components/ButtonsDemo/ButtonsDemo";
+import Form from "../components/Form/Form";
 
 export default function SeatsPage() {
   const { sessaoId } = useParams();
   const [session, setSession] = useState(null);
+  const [name, setName] = useState("");
+  const [cpf, setCpf] = useState("");
   useEffect(() => {
     const promise = axios.get(
       `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`
@@ -17,7 +21,7 @@ export default function SeatsPage() {
     promise.then((response) => {
       setSession(response.data);
     });
-  }, []);
+  }, [sessaoId]);
 
   if (session === null) {
     return <div>Carregando...</div>;
@@ -27,6 +31,8 @@ export default function SeatsPage() {
       <ContainerSeatsPage>
         <Title value="Selecione o(s) assento(s)" />
         <Seats seats={session.seats} />
+        <ButtonsDemo />
+        <Form name={name} setName={setName} cpf={cpf} setCpf={setCpf} />
         <Footer
           imagePoster={session.movie.posterURL}
           title={session.movie.title}
